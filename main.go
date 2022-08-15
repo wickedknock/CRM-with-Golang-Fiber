@@ -14,7 +14,7 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/api/v1/lead", lead.GetLeads)
 	app.Get("/api/v1/lead/:id", lead.GetLead)
 	app.Post("/api/v1/lead", lead.NewLead)
-	app.Delete(lead.DeleteLead)
+	app.Delete("/api/v1/lead/:id", lead.DeleteLead)
 }
 
 func initDatabase() {
@@ -33,6 +33,8 @@ func main() {
 	initDatabase()
 	setupRoutes(app)
 	app.Listen(3000)
+
+	//Close is deprecated
 	//defer database.DBConn.Close()
 
 }
